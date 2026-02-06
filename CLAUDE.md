@@ -4,79 +4,119 @@ Guide for AI assistants working on this repository.
 
 ## Project Overview
 
-**md2docx** is a web application for converting Markdown to Microsoft Word (.docx) documents. The project is planned as an Angular application with TypeScript.
+**md2docx** ist eine interne Webanwendung zur Konvertierung von Markdown in Microsoft Word (.docx) Dokumente. Das Projekt wird als Angular-Anwendung mit TypeScript und einem Backend realisiert.
 
-## Repository Status
+- **Typ:** Internes Tool (kein öffentliches Produkt)
+- **Sprache der UI:** Deutsch
+- **Architektur:** Client-Server (Angular Frontend + Backend)
 
-This is a newly initialized repository. No source code, build configuration, or dependencies have been added yet. Only scaffolding files exist (README.md, .gitignore).
+## Anforderungen
+
+### Funktionale Anforderungen
+
+**Markdown-Eingabe:**
+- Markdown-Text über einen Editor/Textarea eingeben
+- `.md`-Dateien per Datei-Upload hochladen
+- Keine Live-Vorschau erforderlich
+
+**Markdown-Unterstützung:**
+- Überschriften (H1–H6)
+- Fließtext mit Inline-Formatierung (fett, kursiv, durchgestrichen)
+- Listen (geordnet und ungeordnet, verschachtelt)
+- Code-Blöcke und Inline-Code
+- Links
+- Bilder (werden ins DOCX eingebettet)
+- Tabellen
+- Blockzitate
+
+**DOCX-Konvertierung:**
+- Serverseitige Konvertierung (im Backend)
+- Saubere Formatierung mit Word-Styles
+- Bilder aus dem Markdown werden ins DOCX-Dokument eingebettet
+- Fertige .docx-Datei zum Download bereitstellen
+
+**Styling-Optionen:**
+- Nutzer kann Formatierungsoptionen wählen (z.B. Schriftart, Schriftgröße, Farben, Seitenränder)
+- Optional: Vorlagen/Templates für wiederkehrende Dokument-Layouts
+
+### Nicht-funktionale Anforderungen
+
+- Performante Konvertierung auch bei größeren Dokumenten
+- Responsive UI für Desktop-Nutzung
+- Deutsche Benutzeroberfläche (Labels, Fehlermeldungen, Tooltips)
 
 ## Planned Technology Stack
 
-Based on `.gitignore` patterns and project intent:
+- **Frontend:** Angular mit TypeScript
+- **Backend:** Noch zu definieren (z.B. Node.js/Express, NestJS, oder ähnliches)
+- **Package Manager:** npm oder yarn (beide Lock-Dateien sind gitignored)
+- **Build Output:** `/dist/`
 
-- **Framework:** Angular
-- **Language:** TypeScript
-- **Package Manager:** npm or yarn (both lock files are gitignored)
-- **Build Output:** `/dist/` directory
+## Repository Status
+
+Dieses Repository ist frisch initialisiert. Es existiert noch kein Quellcode, keine Build-Konfiguration und keine Dependencies.
 
 ## Project Structure
 
 ```
 md2docx/
-├── .gitignore          # Angular/Node/TypeScript ignore patterns
-├── README.md           # Project description
-└── CLAUDE.md           # This file
+├── .gitignore          # Angular/Node/TypeScript Ignore-Patterns
+├── README.md           # Projektbeschreibung
+└── CLAUDE.md           # Diese Datei
 ```
 
-Once scaffolded, expect standard Angular project layout:
-- `src/` - Application source code
-- `src/app/` - Angular components, services, modules
-- `src/assets/` - Static assets
-- `src/environments/` - Environment configurations
-- `angular.json` - Angular CLI configuration
-- `tsconfig.json` - TypeScript configuration
-- `package.json` - Dependencies and scripts
+Geplante Struktur nach Scaffolding:
+- `src/` - Frontend-Quellcode (Angular)
+- `src/app/` - Angular Components, Services, Modules
+- `src/assets/` - Statische Assets
+- `server/` oder `backend/` - Backend-Quellcode (noch zu definieren)
+- `angular.json` - Angular CLI Konfiguration
+- `tsconfig.json` - TypeScript Konfiguration
+- `package.json` - Dependencies und Scripts
 
 ## Build and Development Commands
 
-No build system is configured yet. Once the Angular project is scaffolded, typical commands will be:
+Noch kein Build-System konfiguriert. Nach dem Scaffolding:
 
 ```bash
-npm install          # Install dependencies
-ng serve             # Start dev server
-ng build             # Production build
-ng test              # Run unit tests
-ng e2e               # Run end-to-end tests
-ng lint              # Run linter
+npm install          # Dependencies installieren
+ng serve             # Dev-Server starten
+ng build             # Production Build
+ng test              # Unit-Tests ausführen
+ng e2e               # End-to-End-Tests ausführen
+ng lint              # Linter ausführen
 ```
 
 ## Key Conventions
 
-- **Environment files:** `.env` is gitignored; never commit secrets
-- **Lock files:** Both `package-lock.json` and `yarn.lock` are gitignored
-- **Build artifacts:** `/dist/`, `/out-tsc/`, `/tmp/` are gitignored
+- **Environment files:** `.env` ist gitignored; keine Secrets committen
+- **Lock files:** Sowohl `package-lock.json` als auch `yarn.lock` sind gitignored
+- **Build artifacts:** `/dist/`, `/out-tsc/`, `/tmp/` sind gitignored
+- **Sprache:** UI und Nutzertexte auf Deutsch, Code und Kommentare auf Englisch
 
 ## Git Workflow
 
 - **Main branch:** `main`
 - **Remote:** origin
-- Feature branches should branch from `main`
-- Write clear, descriptive commit messages
+- Feature-Branches von `main` abzweigen
+- Klare, beschreibende Commit-Messages
 
-## Setup Instructions (for future reference)
+## Setup Instructions
 
-When initializing the Angular project:
+Beim Initialisieren des Angular-Projekts:
 
-1. Install Angular CLI: `npm install -g @angular/cli`
-2. Generate project: `ng new md2docx --directory .` (in existing repo)
-3. Install dependencies: `npm install`
-4. Add markdown parsing library (e.g., `marked`, `markdown-it`)
-5. Add docx generation library (e.g., `docx`, `html-docx-js`)
+1. Angular CLI installieren: `npm install -g @angular/cli`
+2. Projekt generieren: `ng new md2docx --directory .` (im bestehenden Repo)
+3. Dependencies installieren: `npm install`
+4. Markdown-Parsing-Library hinzufügen (z.B. `marked`, `markdown-it`)
+5. DOCX-Generierungs-Library hinzufügen (z.B. `docx`, `html-docx-js`)
+6. Backend-Framework aufsetzen
 
 ## Notes for AI Assistants
 
-- Read existing files before making changes
-- Run tests after modifications if a test suite exists
-- Do not commit `.env` files or secrets
-- Follow Angular style guide and existing project conventions
-- Keep the conversion logic (markdown parsing, docx generation) in dedicated services separate from UI components
+- Bestehende Dateien lesen bevor Änderungen gemacht werden
+- Tests ausführen nach Änderungen, sofern eine Test-Suite existiert
+- Keine `.env`-Dateien oder Secrets committen
+- Angular Style Guide und bestehende Projekt-Konventionen einhalten
+- Konvertierungslogik (Markdown-Parsing, DOCX-Generierung) in eigene Services auslagern, getrennt von UI-Komponenten
+- UI-Texte auf Deutsch, Code und Kommentare auf Englisch
